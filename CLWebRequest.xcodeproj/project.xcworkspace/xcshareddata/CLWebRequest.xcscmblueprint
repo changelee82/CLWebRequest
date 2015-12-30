@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "0B4FF2071AAC3DF4F8A17AA371912FC2B187A734",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "4cc2c789-f6e4-2548-9749-114e8682f433++1218" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4cc2c789-f6e4-2548-9749-114e8682f433++1218" : 0,
+    "0B4FF2071AAC3DF4F8A17AA371912FC2B187A734" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "764291F5-18E4-4229-BAE2-D24997CC3EF2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4cc2c789-f6e4-2548-9749-114e8682f433++1218" : "CLWebRequest\/CLWebRequest\/GTMBase64\/",
+    "0B4FF2071AAC3DF4F8A17AA371912FC2B187A734" : "CLWebRequest\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CLWebRequest",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CLWebRequest.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/changelee82\/CLWebRequest.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0B4FF2071AAC3DF4F8A17AA371912FC2B187A734"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/192.168.1.33\/svn\/IOS-ChaChong",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4cc2c789-f6e4-2548-9749-114e8682f433++1218"
+    }
+  ]
+}

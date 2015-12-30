@@ -70,7 +70,7 @@
 {
     NSData* stringData = [publicKey dataUsingEncoding:NSUTF8StringEncoding];
     NSData* secretData = [privateKey dataUsingEncoding:NSUTF8StringEncoding];
-
+    
     const void* dataBytes = [stringData bytes];
     const void* keyBytes = [secretData bytes];
     
@@ -80,12 +80,12 @@
     CCHmac(kCCHmacAlgSHA1, keyBytes, [secretData length], dataBytes, [stringData length], outs);
     
     // Soluion 1
-    NSData *signatureData = [NSData dataWithBytesNoCopy:outs length:CC_SHA1_DIGEST_LENGTH freeWhenDone:YES];
+    NSData* signatureData = [NSData dataWithBytesNoCopy:outs length:CC_SHA1_DIGEST_LENGTH freeWhenDone:YES];
     
     signatureData = [GTMBase64 encodeData:signatureData];
     NSString *base64String = [[NSString alloc] initWithData:signatureData encoding:NSUTF8StringEncoding];
     
-    return [base64String stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    return base64String;
 }
 
 
@@ -125,6 +125,12 @@
     NSString *string = [GTMBase64 stringByEncodingData:[NSData dataWithBytes:(const void *)bufferPtr length:(NSUInteger)movedBytes]];
     free(bufferPtr);
     NSMutableString *mStr = [[NSMutableString alloc]initWithString:string];
+    
+    // 删除字符串尾部的“＝”
+//    while ([[mStr substringFromIndex:mStr.length - 1] isEqualToString:@"="])
+//    {
+//        mStr = [mStr substringWithRange:NSMakeRange(0, mStr.length - 1)];
+//    }
     
     return mStr;
 }

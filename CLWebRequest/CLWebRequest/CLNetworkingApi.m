@@ -10,8 +10,12 @@
 #import "AFNetworking.h"
 
 
-#define timeoutSeconds 5   //请求超时时间
-#define timeoutTimes 3      //请求最大次数
+/**  请求超时时间 */
+static const NSInteger kTimeoutSeconds = 15;
+
+/**  最大请求次数 */
+//static const NSInteger kTimeoutTimes = 3;
+
 static AFNetworkReachabilityStatus _status;
 static AFNetworkReachabilityManager *_reachability;
 
@@ -68,29 +72,20 @@ static AFNetworkReachabilityManager *_reachability;
  */
 +(void)get:(NSString *)url params:(NSDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure
 {
-    // 1.获得请求管理者
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    // 获得请求管理者
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager.securityPolicy setAllowInvalidCertificates:YES];
-    [manager.requestSerializer setTimeoutInterval:15];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager.requestSerializer setTimeoutInterval:kTimeoutSeconds];
     
-    
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:params];
-    
-    
-    // 2.发送GET请求
-    [manager GET:url parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (success) {
+    [manager GET:url parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        if (success)
+        {
             success(responseObject);
         }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        if (failure) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (failure)
+        {
             failure(error);
-            //错误处理
         }
     }];
 }
@@ -105,37 +100,23 @@ static AFNetworkReachabilityManager *_reachability;
  */
 +(void)post:(NSString *)url params:(NSDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure
 {
-
-    [self post:url params:params times:timeoutTimes success:success failure:failure];
-
-}
-
-+ (void)post:(NSString *)url params:(NSDictionary *)params times:(int)times success:(void (^)(id))success failure:(void (^)(NSError *))failure
-{
-    // 获得请求管理者
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    // 1.获得请求管理者
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager.securityPolicy setAllowInvalidCertificates:YES];
-    [manager.requestSerializer setTimeoutInterval:timeoutSeconds];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager.requestSerializer setTimeoutInterval:kTimeoutSeconds];
 
-
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:params];
-    
-    // 3.发送POST请求
-    [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject)
-            {
-                success(responseObject);
-
-            }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error)
-            {
-
-                if (failure) {
-                    //请求失败
-                    failure(error);
-                }
-            }];
-
+    [manager POST:url parameters:params success:^(NSURLSessionDataTask *task, id responseObject){
+              if (success)
+              {
+                  success(responseObject);
+              }
+          }
+          failure:^(NSURLSessionDataTask *task, NSError *error) {
+              if (failure)
+              {
+                  failure(error);
+              }
+          }];
 }
 
 /**
@@ -157,47 +138,42 @@ static AFNetworkReachabilityManager *_reachability;
 {
     
     //设置参数
-    //所有请求接口中都需要有的参数
-    url = [url stringByAppendingString:@"?_appid=ios"];
-    
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:params];
-    
-    
-    // 1.创建请求管理者
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    [mgr.requestSerializer setTimeoutInterval:15];
-    
-    // 2.发送请求
-    AFHTTPRequestOperation *op=[mgr POST:url parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        if(constractingBodyBlock)
-        {
-            constractingBodyBlock(formData);
-        }
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        //登录异常，用户在另外一个手机上登录，或者token已失效
-        if ([responseObject[@"returncode"] integerValue] == 1010302) {
-            
-            
-        }else
-        {
-            success(responseObject);
-            
-        }
-        //        if (success) {
-        //            success(responseObject);
-        //        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        if (failure) {
-            failure(error);
-        }
-    }];
-    if (uploadProgressBlock) {
-        [op setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-            uploadProgressBlock(bytesWritten,totalBytesWritten,totalBytesExpectedToWrite);
-        }];
-    }
+
+//    
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:params];
+//    
+//    
+//    // 1.创建请求管理者
+//    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+//    [mgr.requestSerializer setTimeoutInterval:15];
+//    
+//    // 2.发送请求
+//    AFHTTPRequestSerializer *op=[mgr POST:url parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        if(constractingBodyBlock)
+//        {
+//            constractingBodyBlock(formData);
+//        }
+//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        if (success)
+//        {
+//            success(responseObject);
+//            
+//        }
+//        //        if (success) {
+//        //            success(responseObject);
+//        //        }
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        if (failure) {
+//            failure(error);
+//        }
+//    }];
+//    if (uploadProgressBlock) {
+//        [op setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+//            uploadProgressBlock(bytesWritten,totalBytesWritten,totalBytesExpectedToWrite);
+//        }];
+//    }
 }
 
 

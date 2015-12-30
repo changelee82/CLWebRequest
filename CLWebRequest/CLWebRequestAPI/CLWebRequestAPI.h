@@ -28,16 +28,14 @@
 + (CLWebRequest *)requestUserLogins:(NSDictionary *)params;
 
 
-/**
- *  获取空气质量
- *
- *  @return 获取空气质量的请求
- */
-+ (CLWebRequest *)requestAirQuality;
 
 
-/** 获取天气状况 */
+
+/** 获取天气状况，数据来源：http://openweather.weather.com.cn */
 + (CLWebRequest *)requestWeather:(NSString *)areaid;
+
+/** 获取空气质量，数据来源：http://aqicn.org */
++ (CLWebRequest *)requestAirQuality;
 
 
 @end

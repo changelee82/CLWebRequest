@@ -15,6 +15,8 @@
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *weatherField;
+@property (weak, nonatomic) IBOutlet UILabel *weatherLabel;
+@property (weak, nonatomic) IBOutlet UILabel *airLabel;
 
 @end
 
@@ -65,7 +67,7 @@
     {
         if (json != nil)
         {
-            NSLog(@"%@", @"天气");
+            self.weatherLabel.text = [NSString stringWithFormat:@"%@", json[@"f"][@"f1"][0][@"fd"]];
         }
     };
     
@@ -75,7 +77,7 @@
     {
         if (json != nil)
         {
-            NSLog(@"%@", json);
+            self.airLabel.text = [NSString stringWithFormat:@"%@ : %@", json[0][@"pollutants"][0][@"pol"],  json[0][@"pollutants"][0][@"value"]];
         }
     };
     
@@ -99,16 +101,16 @@
 - (IBAction)queueClick:(id)sender
 {
     // 请求天气
-    CLWebRequest *requestWeather = [CLWebRequestAPI requestWeather:@"101010100"];
-    requestWeather.requestFinishBlock = ^(id json, CLWebRequestError *error)
-    {
-        if (json != nil)
-        {
-            NSLog(@"%@", json);
-        }
-    };
-    
-    [requestWeather startRequest];
+//    CLWebRequest *requestWeather = [CLWebRequestAPI requestPM25:@"beijing"];
+//    requestWeather.requestFinishBlock = ^(id json, CLWebRequestError *error)
+//    {
+//        if (json != nil)
+//        {
+//            NSLog(@"%@", json);
+//        }
+//    };
+//    
+//    [requestWeather startRequest];
 }
 
 - (IBAction)unionClick:(id)sender

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -54,23 +54,49 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ioi-lV-deq">
+                                <rect key="frame" x="112" y="83" width="100" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="4Ud-hq-r2V"/>
+                                    <constraint firstAttribute="width" constant="100" id="ZUP-p7-N8F"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="空气质量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEm-L6-AdS">
+                                <rect key="frame" x="214" y="83" width="100" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="86T-lo-QTE"/>
+                                    <constraint firstAttribute="height" constant="21" id="B48-h3-mbC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="AHc-yR-cUN" firstAttribute="centerY" secondItem="QIo-tz-69O" secondAttribute="centerY" id="0we-pS-2mv"/>
+                            <constraint firstItem="pEm-L6-AdS" firstAttribute="centerY" secondItem="el9-eh-Dkp" secondAttribute="centerY" id="480-NN-q7U"/>
                             <constraint firstItem="EsV-GD-G81" firstAttribute="top" secondItem="Xvo-pP-CFn" secondAttribute="bottom" constant="20" id="4L0-Vb-r15"/>
                             <constraint firstItem="el9-eh-Dkp" firstAttribute="top" secondItem="QIo-tz-69O" secondAttribute="bottom" constant="20" id="8jH-xs-ob2"/>
                             <constraint firstItem="QIo-tz-69O" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="EOI-js-ySd"/>
                             <constraint firstItem="el9-eh-Dkp" firstAttribute="leading" secondItem="QIo-tz-69O" secondAttribute="leading" id="GaW-q5-BmX"/>
                             <constraint firstItem="Xvo-pP-CFn" firstAttribute="top" secondItem="el9-eh-Dkp" secondAttribute="bottom" constant="20" id="Pv0-IR-GLg"/>
+                            <constraint firstItem="pEm-L6-AdS" firstAttribute="leading" secondItem="Ioi-lV-deq" secondAttribute="trailing" constant="2" id="W97-DN-bqH"/>
                             <constraint firstItem="Xvo-pP-CFn" firstAttribute="leading" secondItem="QIo-tz-69O" secondAttribute="leading" id="XFm-EB-CdK"/>
                             <constraint firstItem="QIo-tz-69O" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="gMY-SC-MzG"/>
                             <constraint firstItem="EsV-GD-G81" firstAttribute="leading" secondItem="QIo-tz-69O" secondAttribute="leading" id="ggp-Xg-Wby"/>
+                            <constraint firstItem="Ioi-lV-deq" firstAttribute="centerY" secondItem="el9-eh-Dkp" secondAttribute="centerY" id="i6N-3Y-mhV"/>
                             <constraint firstItem="AHc-yR-cUN" firstAttribute="leading" secondItem="QIo-tz-69O" secondAttribute="trailing" constant="24" id="ort-2K-lmY"/>
+                            <constraint firstItem="Ioi-lV-deq" firstAttribute="leading" secondItem="el9-eh-Dkp" secondAttribute="trailing" constant="47" id="wev-6o-eiu"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="airLabel" destination="pEm-L6-AdS" id="3fs-5S-r9f"/>
                         <outlet property="weatherField" destination="AHc-yR-cUN" id="fjc-R4-umH"/>
+                        <outlet property="weatherLabel" destination="Ioi-lV-deq" id="vNU-RF-jI3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
