@@ -1,11 +1,11 @@
 # CLWebRequest 1.0
 
-CLWebRequest 网络框架是基于对 AFNetworking 的二次封装，通过将多个网络请求串行或并行组合起来，从而实现对网络请求的同步或按照指定顺序执行。
+CLWebRequest 网络框架是基于对 AFNetworking 的二次封装，通过将多个网络请求串行或并行组合起来，从而实现对网络请求的同步或按照指定顺序执行。 <br />
 
-CLWebRequest  封装网络请求
-CLWebRequestQueue   串行的网络请求队列
-CLWebRequestGroup   并行的网络请求组
-CLWebRequestAPI     用于封装业务层
+CLWebRequest  封装网络请求 <br />
+CLWebRequestQueue   串行的网络请求队列 <br />
+CLWebRequestGroup   并行的网络请求组 <br />
+CLWebRequestAPI     用于封装业务层 <br />
 
     // 设置参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
